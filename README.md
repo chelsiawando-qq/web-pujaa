@@ -52,7 +52,7 @@
 </head>
 <body>
     <div class="welcome-container">
-        <h1>Selamat Datang di Website Kami!</h1>
+        <h1>Selamat Datang di Website Saya!</h1>
         <p>Kami senang Anda berkunjung. Jelajahi berbagai informasi dan layanan yang kami tawarkan.</p>
         <button onclick="alert('Terima kasih sudah menjelajah!')">Mulai Sekarang</button>
     </div>
