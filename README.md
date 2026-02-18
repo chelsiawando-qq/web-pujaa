@@ -3,124 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang di Web Saya</title>
+    <title>Selamat Datang di Web Puja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Menggunakan font modern */
+        /* General Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Lora', serif; /* Font serif untuk kesan elegan */
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background-color: #f8f8f8; /* Warna latar belakang sangat terang */
             color: #333;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
         }
 
-        /* Hero Section dengan Gradien agar tidak flat */
+        /* Hero Section - The Main Visual */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 400px;
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Mengisi seluruh tinggi layar */
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden; /* Pastikan gambar tidak keluar */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/1500x800/dcdcdc/ffffff?text=Gambar+Estetik+Anda+Disini'); /* Placeholder image */
+            /* GANTI URL INI dengan gambar Anda yang estetik dan berkualitas tinggi! */
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7) grayscale(0.2); /* Sedikit gelap dan monokrom untuk kesan tenang */
+            z-index: 1;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        /* Optional: Parallax effect for image */
+        .hero:hover::before {
+            transform: scale(1.05); /* Sedikit zoom saat hover */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Pastikan teks di atas gambar */
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.3); /* Latar belakang semi-transparan untuk teks */
+            border-radius: 10px;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-family: 'Playfair Display', serif; /* Font dekoratif untuk judul utama */
+            font-size: 4.5rem; /* Ukuran font besar */
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px; /* Jarak antar huruf */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* Bayangan teks agar lebih menonjol */
         }
 
-        /* Container Formulir */
-        .container {
-            max-width: 600px;
-            margin: -50px auto 50px auto; /* Menaikkan form sedikit ke atas hero */
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .hero p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-top: 20px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
         }
 
-        h2 {
-            color: #764ba2;
-            text-align: center;
+        /* Subtle Animation on Load */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Styling Input */
-        .form-group {
-            margin-bottom: 20px;
+        .hero-content {
+            animation: fadeInScale 1.5s ease-out forwards;
         }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
         }
 
-        input[type="text"], 
-        input[type="email"], 
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            box-sizing: border-box; /* Agar padding tidak merusak lebar */
-            transition: border-color 0.3s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: #667eea;
-            outline: none;
-        }
-
-        /* Tombol Kirim */
-        button {
-            width: 100%;
-            background: #764ba2;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s, background 0.3s;
-        }
-
-        button:hover {
-            background: #667eea;
-            transform: translateY(-2px);
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-content {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="hero">
-        <h1>Halo, Selamat Datang!</h1>
-        <p>Terima kasih telah berkunjung ke ruang digital saya.</p>
-    </div>
-
-    <div class="container">
-        <h2>Tinggalkan Pesan</h2>
-        <form action="#">
-            <div class="form-group">
-                <label for="name">Nama</label>
-                <input type="text" id="name" placeholder="Masukkan nama Anda..." required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="nama@email.com" required>
-            </div>
-
-            <div class="form-group">
-                <label for="message">Pesan</label>
-                <textarea id="message" rows="5" placeholder="Tuliskan sesuatu untuk saya..."></textarea>
-            </div>
-
-            <button type="submit">Kirim Pesan Sekarang</button>
-        </form>
+        <div class="hero-content">
+            <h1>Selamat Datang di Dunia Puja</h1>
+            <p>Ruang untuk inspirasi, ketenangan, dan cerita yang mengalir.</p>
+        </div>
     </div>
 
 </body>
